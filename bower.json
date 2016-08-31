@@ -22,6 +22,6 @@
   ],
   "dependencies": {
     "aframe": "^0.3.1",
-    "jquery": "^3.1.0",
+    "jquery": "^3.1.0"
   }
 }
