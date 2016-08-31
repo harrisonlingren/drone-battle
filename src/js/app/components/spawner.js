@@ -18,17 +18,9 @@ AFRAME.registerComponent('spawner', {
     var matrixWorld = el.object3D.matrixWorld;
     var position = new THREE.Vector3();
     position.setFromMatrixPosition(matrixWorld);
-
-    var rotation = "0 0 0";
-    var rotationX = el.object3D.rotation.x;
-    var rotationY = el.object3D.rotation.y;
-    var rotationZ = el.object3D.rotation.z;
-    rotation = rotationX.toString + rotationY.toString + rotationZ.toString;
-
     var entity = document.createElement('a-entity');
     entity.setAttribute('position', position);
     entity.setAttribute('mixin', this.data.mixin);
-    entity.setAttribute('rotation', rotation);
     el.sceneEl.appendChild(entity);
   }
 });
