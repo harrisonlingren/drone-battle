@@ -14,10 +14,10 @@ $(document).ready(function() {
   }
 
   // get objects by class
-  var objs = $('');
+  var enemies = document.querySelectorAll('[mixin="enemy"]');
 
   // apply event listeners
-  objs.on('mouseenter', mouseenter);
-  objs.on('mouseleave', mouseleave);
-  objs.on('click', click);
+  enemies.addEventListener('mouseenter', mouseenter);
+  enemies.addEventListener('mouseleave', mouseleave);
+  enemies.addEventListener('click', click);
 });

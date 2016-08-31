@@ -39,6 +39,11 @@
       <a-mixin id="floor"
         geometry="primitive: box; height: 0.1; width: 5; depth: 5"
         material="src: #metalFloor; repeat: 100, 100; roughness: 0.6; metalness: 0.4;"></a-mixin>
+
+      <!-- vive controls -->
+      <a-mixin id="vcursor"
+        vive-cursor="color: #32ff32; radius: 0.0005;"></a-mixin>
+        
     </a-assets>
 
     <!-- Scene Objects -->
@@ -70,8 +75,20 @@
     <a-entity position="22.66 -15.76 4.76" rotation="42 21 23" scale="1 1 1" visible="true" light="type: directional; intensity: 0.41"></a-entity>
 
     <!-- Vive Controls -->
-    <a-entity position="0.1 0.15 0" tracked-controls="controller:1" obj-model="obj: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj); mtl: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl)" vive-controls="hand:right" vive-cursor="color: #32ff32; radius: 0.0005; "></a-entity>
-    <a-entity position="-0.1 0.15 0" tracked-controls="controller:0" obj-model="obj: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj); mtl: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl)" vive-controls="hand:left"></a-entity>
+    <a-entity
+      position="0.1 0.15 0"
+      tracked-controls="controller: 1"
+      obj-model="obj: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj); mtl: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl)"
+      vive-controls="hand: right"
+      mixin="vcursor"
+      spawner="mixin: laser; on: mousedown"></a-entity>
+
+    <a-entity
+      position="-0.1 0.15 0"
+      tracked-controls="controller: 0"
+      obj-model="obj: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj); mtl: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl)"
+      vive-controls="hand: left"
+      spawner="mixin: laser; on: mousedown"></a-entity>
 
     <!-- Skybox -->
     <a-entity position="0.4 0 -2.92" geometry="primitive:sphere;radius:36" material="src: #space; side: back;"></a-entity>
