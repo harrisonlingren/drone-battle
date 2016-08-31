@@ -22,7 +22,7 @@ AFRAME.registerComponent('spawner', {
     var rotation = "0 0 0";
     var rotationX = el.object3D.rotation.x;
     var rotationY = el.object3D.rotation.y;
-    var rotationX = el.object3D.rotation.z;
+    var rotationZ = el.object3D.rotation.z;
 
     rotation = rotationX.toString + rotationY.toString + rotationZ.toString;
 
