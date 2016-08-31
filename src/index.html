@@ -13,24 +13,56 @@
       <img id="metalFloor" src="assets/textures/metal_floor.png" />
       <img id="metalWall" src="assets/textures/metal_wall.png" />
       <img id="space" src="assets/textures/space.png" />
+
+      <!-- lasers objects -->
+      <a-mixin id="laser"
+        geometry="primitive: box; height: 0.5; width: 0.025; depth: 0.025;"
+        material="color: yellow;"
+        laser-behavior collider></a-mixin>
+
+      <!-- drone objects -->
+      <a-mixin id="enemy"
+        explode="on: hit"></a-mixin>
+      <a-mixin id="drone"
+        geometry="primitive:sphere;radius:0.5"
+        material="color: #b5b4b5; roughness: 0.4; metalness: 0.15; flatShading: true"></a-mixin>
+
+      <!-- fence objects -->
+      <a-mixin id="fence"
+        geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025"
+        material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;"></a-mixin>
+      <a-mixin id="post"
+        geometry="primitive: box; height: 1; width: 0.1; depth: 0.1"
+        material="color: #262626; roughness: 0.8; metalness: 0.4;"></a-mixin>
+
+      <!-- floor object -->
+      <a-mixin id="floor"
+        geometry="primitive: box; height: 0.1; width: 5; depth: 5"
+        material="src: #metalFloor; repeat: 100, 100; roughness: 0.6; metalness: 0.4;"></a-mixin>
     </a-assets>
 
-    <!-- Drone Objects -->
-    <a-entity position="-1.67 1.56 -7.92" geometry="primitive:sphere;radius:0.5" material="color: #b5b4b5; roughness: 0.4; metalness: 0.15; flatShading: true"></a-entity>
-
     <!-- Scene Objects -->
-    <a-entity id="fence-f" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="2.3 0.2 0" rotation="0 90 0"></a-entity>
-    <a-entity id="fence-b" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="-2.3 0.2 0" rotation="0 90 0"></a-entity>
-    <a-entity id="fence-l" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="0 0.2 2.3" rotation="0 0 0"></a-entity>
-    <a-entity id="fence-r" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="0 0.2 -2.3" rotation="0 0 0"></a-entity>
+      <!-- Fencing -->
+      <a-entity id="fence-f" class="fence" mixin="fence" position="2.3 0.2 0" rotation="0 90 0"></a-entity>
+      <a-entity id="fence-b" class="fence" mixin="fence" position="-2.3 0.2 0" rotation="0 90 0"></a-entity>
+      <a-entity id="fence-l" class="fence" mixin="fence" position="0 0.2 2.3" rotation="0 0 0"></a-entity>
+      <a-entity id="fence-r" class="fence" mixin="fence" position="0 0.2 -2.3" rotation="0 0 0"></a-entity>
 
-    <a-entity id="post-fl" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="2.3 0.2 2.3"></a-entity>
-    <a-entity id="post-fr" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="2.3 0.2 -2.3"></a-entity>
-    <a-entity id="post-bl" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="-2.3 0.2 2.3"></a-entity>
-    <a-entity id="post-br" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="-2.3 0.2 -2.3"></a-entity>
+      <a-entity id="post-fl" class="post" mixin="post" position="2.3 0.2 2.3"></a-entity>
+      <a-entity id="post-fr" class="post" mixin="post" position="2.3 0.2 -2.3"></a-entity>
+      <a-entity id="post-bl" class="post" mixin="post" position="-2.3 0.2 2.3"></a-entity>
+      <a-entity id="post-br" class="post" mixin="post" position="-2.3 0.2 -2.3"></a-entity>
 
-    <!-- Floor -->
-    <a-entity id="floor" geometry="primitive: box; height: 0.1; width: 5; depth: 5" material="src: #metalFloor; repeat: 100, 100; roughness: 0.6; metalness: 0.4;" position="0 0 0"></a-entity>
+      <!-- Floor -->
+      <a-entity id="floor" mixin="floor" position="0 0 0"></a-entity>
+
+    <!-- Drone Objects -->
+    <a-entity position="-1.67 1.56 -7.92" mixin="drone enemy"></a-entity>
+
+
+
+
+
 
     <!-- Lights -->
     <a-entity light="type:hemisphere; intensity: 0.25;"></a-entity>
@@ -45,10 +77,10 @@
     <a-entity position="0.4 0 -2.92" geometry="primitive:sphere;radius:36" material="src: #space; side: back;"></a-entity>
 
     <!-- Camera -->
-    <a-entity id="cameraWrapper" position="0 0 0" rotation="" scale="" visible="">
-      <a-entity id="camera" camera="active:false;near:0.01" look-controls="" wasd-controls="" position="-6.205192850035276 1.79 -30.67307823791772" rotation="-3.552338329811148 198.93094646941535 0" scale="" visible="">
+    <a-entity id="cameraWrapper" position="0 0 0" rotation scale visible>
+      <a-entity id="camera" camera="active: false; near: 0.01" look-controls wasd-controls position="-6.205192850035276 1.79 -30.67307823791772" rotation="-3.552338329811148 198.93094646941535 0" scale visible>
         <!-- Cursor -->
-        <a-entity id="cursor" position="0 0 -2" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #ff9; shader: flat; transparent: true; opacity: 0.5" scale="2 2 2" raycaster="" rotation="" visible="true">
+        <a-entity id="cursor" position="0 0 -2" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #ff9; shader: flat; transparent: true; opacity: 0.5" scale="2 2 2" raycaster visible="true">
         </a-entity>
       </a-entity>
     </a-entity>
