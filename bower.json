@@ -1,0 +1,27 @@
+{
+  "name": "drone-battle",
+  "main": "build/app.min.js",
+  "homepage": "https://github.com/harrisonlingren/drone-battle",
+  "description": "A WebVR shooter game built with A-frame",
+  "keywords": [
+    "vr",
+    "aframe",
+    "webvr"
+  ],
+  "authors": [
+    "harrisonlingren@gmail.com"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "aframe": "^0.3.1",
+    "jquery": "^3.1.0",
+  }
+}

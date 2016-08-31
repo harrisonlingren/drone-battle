@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>VR Playground</title>
+</head>
+<body>
+  <script src="aframe.min.js"></script>
+  <script src="https://rawgit.com/bryik/aframe-vive-cursor-component/master/dist/aframe-vive-cursor-component.min.js"></script>
+  <a-scene debug="true" stats class="fullscreen" fog antialias>
+    <a-assets>
+      <img id="grass" src="assets/textures/grass.png" />
+      <img id="skyDay" src="assets/textures/sky.png" />
+      <img id="skyNight" src="assets/textures/sky_night.png" />
+      <img id="metalFloor" src="assets/textures/metal_floor.png" />
+      <img id="metalWall" src="assets/textures/metal_wall.png" />
+      <img id="space" src="assets/textures/space.png" />
+    </a-assets>
+
+    <!-- Scene Objects -->
+    <a-entity id="fence-f" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="2.3 0.2 0" rotation="0 90 0"></a-entity>
+    <a-entity id="fence-b" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="-2.3 0.2 0" rotation="0 90 0"></a-entity>
+    <a-entity id="fence-l" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="0 0.2 2.3" rotation="0 0 0"></a-entity>
+    <a-entity id="fence-r" class="fence" geometry="primitive: box; height: 0.8; width: 4.6; depth: 0.025" material="src: #metalWall; repeat: 4, 4; roughness: 0.8; metalness: 0.4;" position="0 0.2 -2.3" rotation="0 0 0"></a-entity>
+
+    <a-entity id="post-fl" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="2.3 0.2 2.3"></a-entity>
+    <a-entity id="post-fr" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="2.3 0.2 -2.3"></a-entity>
+    <a-entity id="post-bl" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="-2.3 0.2 2.3"></a-entity>
+    <a-entity id="post-br" class="post" geometry="primitive: box; height: 1; width: 0.1; depth: 0.1" material="color: #262626; roughness: 0.8; metalness: 0.4;" position="-2.3 0.2 -2.3"></a-entity>
+
+    <!-- Floor. -->
+    <a-entity id="floor" geometry="primitive: box; height: 0.1; width: 5; depth: 5" material="src: #metalFloor; repeat: 100, 100; roughness: 0.6; metalness: 0.4;" position="0 0 0"></a-entity>
+
+    <!-- Lights. -->
+    <a-entity light="type:hemisphere; intensity: 0.25;"></a-entity>
+    <a-entity position="15.66 24.76 9.76" rotation="0 0 0" scale="1 1 1" visible="true" light="type: directional; intensity: 0.24"></a-entity>
+    <a-entity position="22.66 -15.76 4.76" rotation="42 21 23" scale="1 1 1" visible="true" light="type: directional; intensity: 0.41"></a-entity>
+
+    <!-- Vive Controls -->
+    <a-entity position="0.1 0.15 0" tracked-controls="controller:1" obj-model="obj: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj); mtl: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl)" vive-controls="hand:right" vive-cursor="color: #32ff32; radius: 0.0005; "></a-entity>
+    <a-entity position="-0.1 0.15 0" tracked-controls="controller:0" obj-model="obj: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.obj); mtl: url(https://cdn.aframe.io/controllers/vive/vr_controller_vive.mtl)" vive-controls="hand:left"></a-entity>
+
+    <!-- Skybox -->
+    <a-entity position="0.4 0 -2.92" geometry="primitive:sphere;radius:36" material="src: #space; side: back;"></a-entity>
+
+    <!-- Camera. -->
+    <a-entity id="cameraWrapper" position="0 0 0" rotation="" scale="" visible="">
+      <a-entity id="camera" camera="active:false;near:0.01" look-controls="" wasd-controls="" position="-6.205192850035276 1.79 -30.67307823791772" rotation="-3.552338329811148 198.93094646941535 0" scale="" visible="">
+        <!-- Cursor. -->
+        <a-entity id="cursor" position="0 0 -2" geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01" material="color: #ff9; shader: flat; transparent: true; opacity: 0.5" scale="2 2 2" raycaster="" rotation="" visible="true">
+        </a-entity>
+      </a-entity>
+    </a-entity>
+
+  </a-scene>
+  <script src="app.min.js"></script>
+</body>
+</html>
